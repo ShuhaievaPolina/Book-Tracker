@@ -1,1 +1,90 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #4a2e2b;
+  background-color: #fdfbf7;
+}
+
+header {
+  background-color: #fff;
+  padding: 1rem;
+  border-bottom: 2px solid #8b5a2b;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-top: 0;
+  color: #3d2314;
+}
+
+nav a {
+  margin-right: 1rem;
+  color: #8b5a2b;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+input,
+select {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+.card {
+  padding: 1rem;
+  border: 1px solid #d7ccc8;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  background-color: #ffffff;
+}
+
+.card::before {
+  content: "Обкладинка";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 160px;
+  background-color: #e0d7d5;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  color: #4a2e2b;
+}
+
+aside {
+  background-color: #f5ebe0;
+  padding: 1rem;
+  border: 1px solid #d7ccc8;
+}
+
+footer {
+  font-size: 0.8rem;
+  padding: 1rem;
+  color: #8b5a2b;
+}
