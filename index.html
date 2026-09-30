@@ -7,7 +7,7 @@
     <title>Трекер прочитаних книг</title>
   </head>
   <body>
-    <header>
+    <header class="site-header">
       <h1>Трекер прочитаних книг</h1>
       <nav>
         <a href="#add-book">Додати книгу</a>
@@ -16,52 +16,60 @@
       </nav>
     </header>
 
-    <main>
-      <section id="add-book">
-        <h2>Додати книгу</h2>
-        <form>
-          <label for="title">Назва книги:</label>
-          <input type="text" id="title" name="title" required />
+    <div class="layout">
+      <main>
+        <section id="add-book">
+          <h2>Додати книгу</h2>
+          <form>
+            <label for="title">Назва книги:</label>
+            <input type="text" id="title" name="title" required />
 
-          <label for="author">Автор:</label>
-          <input type="text" id="author" name="author" required />
+            <label for="author">Автор:</label>
+            <input type="text" id="author" name="author" required />
 
-          <label for="status">Статус:</label>
-          <select id="status" name="status">
-            <option value="прочитана">Прочитана</option>
-            <option value="читаю зараз">Читаю зараз</option>
-            <option value="заплановано">Заплановано</option>
-          </select>
+            <label for="status">Статус:</label>
+            <select id="status" name="status">
+              <option value="прочитана">Прочитана</option>
+              <option value="читаю зараз">Читаю зараз</option>
+              <option value="заплановано">Заплановано</option>
+            </select>
 
-          <button type="submit">Додати книгу</button>
-        </form>
-      </section>
-      <section id="my-books">
-        <h2>Мої книги</h2>
-        <article class="card">
-          <h3>Алхімік</h3>
-          <p>Автор: Пауло Коельйо</p>
-          <p>Статус: Прочитана</p>
-        </article>
-        <article class="card">
-          <h3>1984</h3>
-          <p>Автор: Джордж Оруелл</p>
-          <p>Статус: Читаю зараз</p>
-        </article>
-        <article class="card">
-          <h3>Гордість та упередження</h3>
-          <p>Автор: Джейн Остін</p>
-          <p>Статус: Заплановано</p>
-        </article>
-      </section>
-    </main>
+            <button type="submit">Додати книгу</button>
+          </form>
+        </section>
+        <section id="my-books">
+          <h2>Мої книги</h2>
+          <div class="cards">
+            <article class="card">
+              <h3>Алхімік</h3>
+              <p>Автор: Пауло Коельйо</p>
+              <p>Статус: <span class="status status-read">Прочитана</span></p>
+            </article>
+            <article class="card">
+              <h3>1984</h3>
+              <p>Автор: Джордж Оруелл</p>
+              <p>
+                Статус: <span class="status status-reading">Читаю зараз</span>
+              </p>
+            </article>
+            <article class="card">
+              <h3>Гордість та упередження</h3>
+              <p>Автор: Джейн Остін</p>
+              <p>
+                Статус: <span class="status status-planned">Заплановано</span>
+              </p>
+            </article>
+          </div>
+        </section>
+      </main>
 
-    <aside id="statistics">
-      <h2>Статистика читання</h2>
-      <p>Кількість прочитаних книг: 1</p>
-      <p>Читаю зараз: 1</p>
-      <p>Кількість запланованих книг: 1</p>
-    </aside>
+      <aside id="statistics">
+        <h2>Статистика читання</h2>
+        <p>Кількість прочитаних книг: 1</p>
+        <p>Читаю зараз: 1</p>
+        <p>Кількість запланованих книг: 1</p>
+      </aside>
+    </div>
 
     <footer>
       <p>Автор: Шугаєва Поліна</p>

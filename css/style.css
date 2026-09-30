@@ -22,10 +22,32 @@ header {
   border-bottom: 2px solid #8b5a2b;
 }
 
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 h1 {
-  font-size: 2rem;
-  margin-top: 0;
+  font-size: 2.5rem;
+  margin: 0;
   color: #3d2314;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Georgia", "Times New Roman", serif;
 }
 
 nav a {
@@ -33,7 +55,7 @@ nav a {
   color: #8b5a2b;
 }
 
-main {
+.layout {
   max-width: 800px;
   margin: 0 auto;
   padding: 1rem;
@@ -50,16 +72,53 @@ label {
 
 input,
 select {
+  font-family: inherit;
   width: 100%;
   margin-bottom: 1rem;
   padding: 0.5rem;
+}
+
+button {
+  font-family: inherit;
+  background-color: #8b5a2b;
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #6d441f;
+}
+
+.status::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.status-read::before {
+  background-color: #4b8b3b;
+}
+
+.status-reading::before {
+  background-color: #d9822b;
+}
+
+.status-planned::before {
+  background-color: #8c7b75;
 }
 
 .card {
   padding: 1rem;
   border: 1px solid #d7ccc8;
   border-radius: 6px;
-  margin-bottom: 1rem;
+  /*margin-bottom: 1rem;*/
   background-color: #ffffff;
 }
 
@@ -69,12 +128,42 @@ select {
   align-items: center;
   justify-content: center;
   width: 120px;
-  height: 160px;
+  aspect-ratio: 2/3;
+  height: auto;
   background-color: #e0d7d5;
   border-radius: 6px;
   margin-bottom: 1rem;
   font-size: 0.85rem;
   color: #4a2e2b;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 600px) {
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .layout {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    max-width: 1200px;
+    gap: 24px;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 aside {
