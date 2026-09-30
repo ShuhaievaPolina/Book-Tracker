@@ -115,10 +115,12 @@ button:hover {
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   padding: 1rem;
   border: 1px solid #d7ccc8;
   border-radius: 6px;
-  /*margin-bottom: 1rem;*/
   background-color: #ffffff;
 }
 
