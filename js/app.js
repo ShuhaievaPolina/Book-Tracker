@@ -1,5 +1,7 @@
 console.log("app.js підключено");
 
+const API_URL = "https://openlibrary.org/search.json?q=";
+
 const books = [
   { title: "Алхімік", pages: 160, finished: true, author: "Пауло Коельо" },
   { title: "1984", pages: 328, finished: false, author: "Джордж Оруелл" },
@@ -33,6 +35,12 @@ const listContainer = document.querySelector("#books-list");
 const booksCount = document.querySelector("#books-count");
 const form = document.querySelector("#add-book-form");
 const authorInput = document.querySelector("#author");
+const searchInput = document.querySelector("#search-input");
+const searchButton = document.querySelector("#search-button");
+const loadingIndicator = document.querySelector("#loading-indicator");
+const errorContainer = document.querySelector("#error-container");
+const errorText = document.querySelector("#error-text");
+const retryButton = document.querySelector("#retry-button");
 
 //Функція для підрахунку загальної кількості прочитаних сторінок (тобто сторінок у прочитаних книгах)//
 function finishedBooksPages(books) {
@@ -96,6 +104,56 @@ function renderBooks(booksArray) {
   booksCount.textContent = `Загальна кількість книг: ${booksArray.length}`;
 }
 
+// Функції відображення ознаки пошуку//
+function showLoading(isLoading) {
+  loadingIndicator.style.display = isLoading ? "block" : "none";
+}
+
+// Функція відображення повідомлення про помилку пошуку//
+function showError(message) {
+  if (errorText) errorText.textContent = message;
+  errorContainer.style.display = message ? "flex" : "none";
+}
+
+// Функція для завантаження даних API_URL = "https://openlibrary.org/search.json?q="//
+async function loadData(query) {
+  showLoading(true);
+  showError("");
+  listContainer.innerHTML = "";
+
+  try {
+    const response = await fetch(`${API_URL}${encodeURIComponent(query)}`);
+
+    if (!response.ok) throw new Error(`Помилка сервера: ${response.status}`);
+
+    const data = await response.json();
+    console.log(data);
+
+    if (!data.docs || data.docs.length === 0)
+      throw new Error("За вашим запитом нічого не знайдено.");
+
+    const formattedBooks = data.docs.map((doc) => {
+      return {
+        title: doc.title,
+        author: doc.author_name ? doc.author_name[0] : "Невідомий автор",
+        pages: doc.first_publish_year || 0,
+        finished: false,
+      };
+    });
+
+    renderBooks(formattedBooks);
+  } catch (error) {
+    if (error.message === "За вашим запитом нічого не знайдено.") {
+      showError(error.message);
+    } else {
+      showError("Не вдалося завантажити дані. спробуйте пізніше.");
+    }
+    console.error("Деталі помилки:", error);
+  } finally {
+    showLoading(false);
+  }
+}
+
 const staticCards = document.querySelectorAll("#books-list .card");
 staticCards.forEach((card) => card.remove());
 
@@ -109,6 +167,24 @@ const pagesPerDayForTargetBook = pagesPerDay(targetBook.pages, 7);
 console.log(
   `Щоб прочитати книгу "${targetBook.title}" за 7 днів, потрібно читати приблизно ${pagesPerDayForTargetBook} сторінок на день`,
 );
+
+// Обробник події для кнопки пошуку//
+searchButton.addEventListener("click", () => {
+  const query = searchInput.value.trim();
+  if (query) {
+    loadData(query);
+  } else {
+    showError("Будь ласка, введіть назву книги для пошуку.");
+  }
+});
+
+// Обробник події для кнопки оновлення пошуку//
+retryButton.addEventListener("click", () => {
+  const query = searchInput.value.trim();
+  if (query) {
+    loadData(query);
+  }
+});
 
 // Обробник події для зміни статусу книги //
 listContainer.addEventListener("change", (event) => {

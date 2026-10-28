@@ -12,6 +12,7 @@
       <h1>Трекер прочитаних книг</h1>
       <nav>
         <a href="#add-book">Додати книгу</a>
+        <a href="#search-section">Пошук книг</a>
         <a href="#my-books">Мої книги</a>
         <a href="#statistics">Статистика</a>
       </nav>
@@ -45,6 +46,34 @@
 
             <button type="submit">Додати книгу</button>
           </form>
+        </section>
+        <section id="search-section">
+          <h2>Пошук книг</h2>
+          <div class="search-controls">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Введіть назву книги"
+            />
+            <button id="search-button">Знайти</button>
+          </div>
+
+          <p
+            id="loading-indicator"
+            class="loading-indicator"
+            style="display: none"
+          >
+            Пошук книги...
+          </p>
+
+          <div
+            id="error-container"
+            class="error-container"
+            style="display: none"
+          >
+            <p id="error-text" class="error-text"></p>
+            <button id="retry-button" class="retry-button">Оновити</button>
+          </div>
         </section>
         <section id="my-books">
           <h2>Мої книги</h2>
