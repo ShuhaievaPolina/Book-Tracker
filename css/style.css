@@ -158,6 +158,31 @@ button:hover {
   opacity: 0.8;
 }
 
+.card p:has(.status-select) {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.status-select {
+  width: auto;
+  min-width: 100px;
+  flex-grow: 1;
+  margin-bottom: 0;
+  padding: 0.25rem 0.4rem;
+  font-size: 0.85rem;
+  border: 1px solid #d7ccc8;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  color: inherit;
+}
+
+.status-select:focus {
+  outline: 2px solid #8b5a2b;
+}
+
 @media (min-width: 600px) {
   .cards {
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
