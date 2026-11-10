@@ -270,3 +270,26 @@ footer {
   padding: 1rem;
   color: #8b5a2b;
 }
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.status-pill.read .status-dot {
+  background-color: #4b8b3b;
+}
+
+.status-pill.reading .status-dot {
+  background-color: #d9592b;
+}
